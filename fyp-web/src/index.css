@@ -1,0 +1,100 @@
+@import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
+
+* {
+  border-color: rgb(55 65 81);
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(17 24 39);
+  color: rgb(243 244 246);
+}
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+  background-color: rgb(37 99 235);
+  color: white;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: rgb(29 78 216);
+}
+
+.btn-secondary {
+  padding: 0.5rem 1rem;
+  background-color: rgb(55 65 81);
+  color: white;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  background-color: rgb(75 85 99);
+}
+
+.card {
+  background-color: rgb(31 41 55);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: rgb(55 65 81);
+  border: 1px solid rgb(75 85 99);
+  border-radius: 0.5rem;
+  color: rgb(243 244 246);
+  transition: all 0.2s;
+}
+
+.input-field:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgb(59 130 246);
+}
+
+/* Leaflet custom styles */
+.leaflet-container {
+  background-color: rgb(17 24 39);
+}
+
+.leaflet-control {
+  border-color: rgb(55 65 81);
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}

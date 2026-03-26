@@ -1,0 +1,17 @@
+# Sponge City Karachi — Backend Dependencies
+# Python 3.9–3.12 recommended (inference-sdk requires <3.13)
+
+# Core
+flask>=3.0
+flask-cors>=4.0
+rasterio>=1.3
+numpy>=1.24
+Pillow>=10.0
+requests>=2.31
+folium>=0.15
+
+# LULC Segmentation (Roboflow)
+inference-sdk>=0.26
+
+# Building Detection (YOLO)
+ultralytics>=8.0

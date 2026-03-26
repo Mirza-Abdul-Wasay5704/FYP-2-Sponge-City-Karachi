@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Access Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #10b981;
+        }
+        .error {
+            background: #ef4444;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Geospatial Files Access Test</h1>
+    <p>Testing if files in /Layers/ are accessible...</p>
+    
+    <button onclick="testGeoTIFF()">Test GeoTIFF</button>
+    <button onclick="testShapefile()">Test Shapefile</button>
+    <button onclick="testAll()">Test All</button>
+    
+    <div id="results"></div>
+
+    <script>
+        async function testGeoTIFF() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML += '<p>Testing GeoTIFF...</p>';
+            
+            try {
+                const response = await fetch('/Layers/Korangi_TWI.tif');
+                if (response.ok) {
+                    const blob = await response.blob();
+                    resultsDiv.innerHTML += `<div class="test-result success">✓ GeoTIFF accessible (${(blob.size / 1024 / 1024).toFixed(2)} MB)</div>`;
+                } else {
+                    resultsDiv.innerHTML += `<div class="test-result error">✗ GeoTIFF not accessible: ${response.status}</div>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML += `<div class="test-result error">✗ Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testShapefile() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML += '<p>Testing Shapefiles...</p>';
+            
+            const files = [
+                'korangi_roads.shp',
+                'korangi_roads.dbf',
+                'korangi_landuse.shp',
+                'korangi_waterways.shp'
+            ];
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(`/Layers/${file}`);
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        resultsDiv.innerHTML += `<div class="test-result success">✓ ${file} (${(blob.size / 1024).toFixed(2)} KB)</div>`;
+                    } else {
+                        resultsDiv.innerHTML += `<div class="test-result error">✗ ${file}: ${response.status}</div>`;
+                    }
+                } catch (error) {
+                    resultsDiv.innerHTML += `<div class="test-result error">✗ ${file}: ${error.message}</div>`;
+                }
+            }
+        }
+
+        async function testAll() {
+            document.getElementById('results').innerHTML = '<h2>Running tests...</h2>';
+            await testGeoTIFF();
+            await testShapefile();
+        }
+    </script>
+</body>
+</html>

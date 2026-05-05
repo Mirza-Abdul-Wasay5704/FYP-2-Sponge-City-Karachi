@@ -50,7 +50,6 @@ wheels/
 .Python
 
 # Backend data and cache (large files that shouldn't be committed)
-backend/data/
 backend/sat_cache/
 
 # === EDITOR & IDE ===

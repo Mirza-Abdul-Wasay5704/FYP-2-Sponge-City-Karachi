@@ -145,7 +145,7 @@ def lat_lon_to_tile(lat, lon, zoom):
     y = int((1.0 - math.log(math.tan(lat_rad) + 1.0 / math.cos(lat_rad))
              / math.pi) / 2.0 * n)
     return x, y
-
+print("")
 
 def fetch_satellite_image(lat, lon, zoom=17, grid_size=3):
     """Fetch Esri World Imagery tiles and stitch into a 640×640 image."""

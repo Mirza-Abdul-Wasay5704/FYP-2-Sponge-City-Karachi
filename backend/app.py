@@ -145,9 +145,9 @@ def lat_lon_to_tile(lat, lon, zoom):
     y = int((1.0 - math.log(math.tan(lat_rad) + 1.0 / math.cos(lat_rad))
              / math.pi) / 2.0 * n)
     return x, y
-print("")
 
-def fetch_satellite_image(lat, lon, zoom=17, grid_size=3):
+
+def fetch_satellite_image(lat, lon, zoom=16, grid_size=3):
     """Fetch Esri World Imagery tiles and stitch into a 640×640 image."""
     cache_key = f"{lat:.6f}_{lon:.6f}_z{zoom}"
     cache_path = os.path.join(CACHE_DIR, f"{cache_key}.jpg")
@@ -833,7 +833,7 @@ Task:
 3. Explain strictly WHY this solution fits based on water absorption, soil type, and flood mitigation. Include its long-term durability.
 Format heavily in markdown. Keep it engaging but professional."""
 
-        full_text = ""
+        full_text = "" 
         try:
             client = get_genai_client()
             logger.info("[INSIGHTS] Streaming from Gemini...")
